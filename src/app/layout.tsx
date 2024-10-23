@@ -4,6 +4,7 @@ import { Manrope } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme";
 
 const manrope = Manrope({ subsets: ["latin"] })
 
@@ -22,7 +23,15 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body
-        className={`${manrope.className} bg-[#171717]`}>{children}</body>
+        className={`${manrope.className} bg-[#171717]`}>
+          <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
     </html>
     </ClerkProvider>
   )
